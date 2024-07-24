@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import ReactQueryProvider from "@/lib/utils/react-query";
 import { Toaster } from "react-hot-toast";
 import { UserProvider } from "@/contexts/user";
+import { LinkProvider } from "@/contexts/links";
 
 const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
@@ -26,14 +27,16 @@ export default function RootLayout({
       <body className={instrumentSans.className}>
         <ReactQueryProvider>
           <UserProvider>
-            {children}
-            <Toaster
-              position="top-center"
-              reverseOrder={false}
-              toastOptions={{
-                duration: 2500,
-              }}
-            />
+            <LinkProvider>
+              {children}
+              <Toaster
+                position="top-center"
+                reverseOrder={false}
+                toastOptions={{
+                  duration: 2500,
+                }}
+              />
+            </LinkProvider>
           </UserProvider>
         </ReactQueryProvider>
       </body>

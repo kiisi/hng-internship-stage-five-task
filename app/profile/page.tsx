@@ -109,19 +109,22 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                         <p className="max-w-[200px] w-full">Profile picture</p>
                         <div className="flex items-center gap-[24px]">
                             <div
-                                className="w-[193px] grid place-items-center shrink-0 h-[193px] rounded-[12px] bg-primary-light"
+                                className="rounded-[12px] overflow-hidden w-[193px] grid place-items-center shrink-0 h-[193px] rounded-[12px] bg-primary-light"
                             >
-                                {/* {
+                                {
                                     formData.profile_picture && (
                                         <Image
                                             src={formData.profile_picture}
                                             alt="Picture of the author"
                                             width={193}
                                             height={193}
-                                            className=""
+                                            quality={100}
+                                            className="absolute rounded-[12px] overflow-hidden"
+                                            priority 
+                                            unoptimized 
                                         />
                                     )
-                                } */}
+                                }
                                 <div className="relative grid place-items-center font-semibold text-center text-primary">
                                     <input
                                         type="file"

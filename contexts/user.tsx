@@ -56,6 +56,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           .select('*')
           .eq('user_id', user?.id ?? '')
           .single();
+          console.log(error)
 
         if (data) {
           const _data: User = {
