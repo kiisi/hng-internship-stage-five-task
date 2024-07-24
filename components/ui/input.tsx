@@ -3,13 +3,14 @@ import { forwardRef, ReactNode, type InputHTMLAttributes } from "react";
 
 export interface InputProperties
     extends InputHTMLAttributes<HTMLInputElement> {
-    leading?: ReactNode
+    leading?: ReactNode,
+    containerClassName?: string,
 }
 
 const Input = forwardRef<HTMLInputElement, InputProperties>(
-    ({ className, type, leading, ...properties }, reference) => {
+    ({ className, type, leading, containerClassName, ...properties }, reference) => {
         return (
-            <div className="relative">
+            <div className={cn("relative", containerClassName)}>
                 {
                     leading && (
                         <div className="absolute top-[50%] translate-y-[-50%] left-[16px]">

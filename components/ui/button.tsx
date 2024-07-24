@@ -4,13 +4,13 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 export const buttonVariants = cva(
-    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-[16px] font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-[16px] font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-25",
     {
         variants: {
             variant: {
                 default: "bg-primary text-white hover:shadow-[0px_0px_32px_0px_#633CFF40] hover:bg-primary-alt",
                 secondary:
-                    "bg-whitesmoke border-[1px] text-primary hover:bg-secondary/80",
+                    "bg-white border-[1px] text-primary hover:bg-secondary/80",
             },
             size: {
                 default: "h-[46px] px-[27px] py-[11px] rounded-[8px]",

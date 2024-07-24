@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "../styles/globals.css";
+import ReactQueryProvider from "@/lib/utils/react-query";
 
 const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
@@ -20,7 +21,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={instrumentSans.className}>{children}</body>
+      <body className={instrumentSans.className}>
+        <ReactQueryProvider>
+          <Auth>
+            {children}
+          </Auth>
+        </ReactQueryProvider>
+      </body>
     </html>
+  );
+}
+
+
+function Auth({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <>
+      {children}
+    </>
   );
 }
