@@ -7,6 +7,7 @@ export interface Link {
     id: string;
     title: string;
     url: string;
+    user_id: string;
 }
 
 export interface LinkContextType {
@@ -19,6 +20,7 @@ export interface LinkContextType {
 // Define action types
 type Action =
     | { type: 'SET_LINK'; payload: Link }
+    | { type: 'SET_LINKS'; payload: Link[] }
     | { type: 'REMOVE_LINK'; payload: Link }
 
 interface LinkState {
@@ -52,6 +54,13 @@ const linkReducer = (state: LinkState, action: Action): LinkState => {
                 ...state,
                 links: links
             };
+        case "SET_LINKS": {
+
+            return {
+                ...state,
+                links: action.payload
+            }
+        }
         case 'REMOVE_LINK':
 
             const _links = state.links
@@ -91,18 +100,10 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                     .select('*')
                     .eq('user_id', user?.id ?? '')
 
-                // console.log(data)
+                console.log(data)
 
                 if (data) {
-                    // const _data: User = {
-                    //     id: data.user_id,
-                    //     email: data.email,
-                    //     first_name: data.first_name,
-                    //     last_name: data.last_name,
-                    //     profile_picture: data.profile_picture,
-                    // }
-
-                    // dispatch({ type: 'SET_USER', payload: _data as User });
+                    dispatch({ type: 'SET_LINKS', payload: data as Link[] });
                 }
             }
             catch (error) {
@@ -114,61 +115,25 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }, [supabase]);
 
     const save = async (links: Link[]) => {
+        console.log(links)
 
-        // if (!user) {
-        //     console.error('No user data available');
-        //     return;
-        // }
-        // console.log(user)
-        // const { id } = user;
-        // console.log(id)
+        try {
+            const { data, error } = await supabase
+                .from("url")
+                .upsert(links, { onConflict: 'id' });
 
-        // // Check if the user exists by ID or email
-        // const { data: existingUser, error: fetchError } = await supabase
-        //     .from('profile')
-        //     .select('*')
-        //     .eq('user_id', id)
-        //     .single();
-        // console.log(existingUser)
+            if (error) {
+                console.error('Error upserting data:', error);
+                return;
+            }
 
-        // if (existingUser) {
-        //     // Update existing user
-        //     const { error: updateError } = await supabase
-        //         .from('profile')
-        //         .update({
-        //             first_name: user.first_name,
-        //             last_name: user.last_name,
-        //             profile_picture: user.profile_picture,
-        //             email: user.email,
-        //         })
-        //         .eq('user_id', id);
+            success("Your changes have been successfully saved!")
+        } catch (error) {
+            console.error('Error:', error);
+        }
 
-        //     if (updateError) {
-        //         console.error('Error updating user:', updateError.message);
-        //     } else {
-        //         success('Your changes have been successfully saved!')
-        //         console.log('User updated successfully');
-        //     }
-        // } else {
-        //     // Create new user
-        //     const { error: insertError } = await supabase
-        //         .from('profile')
-        //         .insert({
-        //             user_id: user.id,
-        //             email: user.email,
-        //             first_name: user.first_name,
-        //             last_name: user.last_name,
-        //             profile_picture: user.profile_picture,
-        //         });
+    }
 
-        //     if (insertError) {
-        //         console.error('Error inserting user:', insertError.message);
-        //     } else {
-        //         success('Your changes have been successfully saved!')
-        //         console.log('User created successfully');
-        //     }
-        // }
-    };
 
     const setLink = (link: Link) => {
         dispatch({ type: 'SET_LINK', payload: link });

@@ -88,13 +88,11 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
 
     useEffect(() => {
         setUser(formData)
-    }, [])
+    }, [formData])
 
     const submit = () => {
         save(formData)
     }
-
-    console.log(formData)
 
     return (
         <>

@@ -10,7 +10,7 @@ export const buttonVariants = cva(
             variant: {
                 default: "bg-primary text-white hover:shadow-[0px_0px_32px_0px_#633CFF40] hover:bg-primary-alt",
                 secondary:
-                    "bg-white border-[1px] text-primary hover:bg-secondary/80",
+                    "bg-white border-[1px] text-primary hover:bg-primary-light",
             },
             size: {
                 default: "h-[46px] px-[27px] py-[11px] rounded-[8px]",

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link, useLinkContext } from "@/contexts/links";
+import { useUserContext } from "@/contexts/user";
 import AppLayout from "@/layouts/app-layout";
 import { nanoid } from "nanoid";
 import Image from "next/image";
@@ -17,7 +18,9 @@ interface OuterObject {
 
 export default function Page() {
 
-  const { linkState, setLink, removeLink } = useLinkContext()
+  const { linkState, setLink, save, removeLink } = useLinkContext()
+
+  const { user } = useUserContext()
 
   const links = linkState.links
 
@@ -25,7 +28,8 @@ export default function Page() {
     setLink({
       title: '',
       url: '',
-      id: nanoid()
+      id: nanoid(),
+      user_id: user?.id ?? ''
     })
   }
 
@@ -52,7 +56,7 @@ export default function Page() {
     setLink(payload);
   }
 
-  console.log("Links", links)
+  const submit = () => save(links)
 
   return (
     <AppLayout>
@@ -67,7 +71,7 @@ export default function Page() {
               + Add new link
             </Button>
           </div>
-          <div className="flex flex-col gap-[24px] h-[500px] overflow-y-auto">
+          <div className="flex flex-col gap-[24px] h-[500px] overflow-y-auto devlinks-scroll-bar">
             {
               links.length > 0 ? (
                 links.map((link, index) => (
@@ -128,7 +132,7 @@ export default function Page() {
         </div>
         <div className="mt-auto">
           <div className="border-t-[1px] pr-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
-            <Button disabled={true}>
+            <Button onClick={submit}>
               Save
             </Button>
           </div>
