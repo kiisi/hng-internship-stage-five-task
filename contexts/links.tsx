@@ -1,5 +1,5 @@
 "use client"
-import { success } from '@/components/common/toast';
+import { error, success } from '@/components/common/toast';
 import { createClient } from '@/lib/utils/supabase/client';
 import React, { createContext, useReducer, useEffect, ReactNode, useContext } from 'react';
 
@@ -139,8 +139,24 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         dispatch({ type: 'SET_LINK', payload: link });
     };
 
-    const removeLink = (link: Link) => {
-        dispatch({ type: 'REMOVE_LINK', payload: link });
+    const removeLink = async (link: Link) => {
+
+        try {
+            const { data, error: _error } = await supabase
+                .from('url')
+                .delete()
+                .eq('id', link.id)
+                .select()
+
+            if (_error) {
+                return error("Unable to remove link")
+            }
+            
+            dispatch({ type: 'REMOVE_LINK', payload: data[0] });
+        }
+        catch (error) {
+            console.log(error)
+        }
     };
 
     return (
