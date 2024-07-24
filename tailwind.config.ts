@@ -21,6 +21,13 @@ const config: Config = {
       }
     },
   },
+  options: {
+    safelist: [
+      'animate-enter',
+      'animate-leave',
+      // Add other dynamic classes that should not be purged
+    ],
+  },
   plugins: [],
 };
 export default config;

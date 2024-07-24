@@ -8,38 +8,88 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { createAccount } from "../action";
+import { useMutation } from "@tanstack/react-query";
+import { error, success } from "@/components/common/toast";
+
+export interface FormDataProps {
+    email: string | null;
+    password: string | null;
+    confirmPassword: string | null;
+}
 
 export default function Page() {
 
-    const [formError, setFormError] = useState({
+    const [formError, setFormError] = useState<FormDataProps>({
         email: null,
-        password: null
-    })
+        password: null,
+        confirmPassword: null,
+    });
+
+    const { mutateAsync, isPending } = useMutation({
+        mutationFn: (payload: FormDataProps) => createAccount(payload),
+        onSuccess: (response) => {
+            console.log("=============RESPONSE START===============")
+            console.log(response)
+            if (response?.error) {
+                error(response.error)
+            } 
+            else {
+                success("Account created. Please verify account via the email we sent you")
+            }
+        },
+    });
+
 
     async function signup(formData: FormData) {
-        const supabase = createClient()
 
-        // type-casting here for convenience
-        // in practice, you should validate your inputs
         const data = {
             email: formData.get('email') as string,
             password: formData.get('password') as string,
             confirmPassword: formData.get('confirmPassword') as string,
         }
 
-        if(data.password || data.confirmPassword){
-            return 
+        if (!data.email.trim()) {
+            return setFormError({
+                password: null,
+                confirmPassword: null,
+                email: "Can't be empty"
+            })
         }
 
-        const response = await supabase.auth.signUp(data)
-        console.log(response)
-
-        if (response.error) {
-            redirect('/error')
+        if (!data.password.trim()) {
+            return setFormError({
+                email: null,
+                confirmPassword: null,
+                password: "Can't be empty",
+            });
         }
 
-        revalidatePath('/', 'layout')
-        redirect('/')
+        if (data.password.trim().length < 8) {
+            return setFormError({
+                email: null,
+                confirmPassword: null,
+                password: "At least 8 characters",
+            });
+        }
+
+        if (!data.confirmPassword.trim()) {
+            return setFormError({
+                email: null,
+                password: null,
+                confirmPassword: "Can't be empty",
+            });
+        }
+
+        if (data.password !== data.confirmPassword) {
+            return setFormError((prev) => ({
+                email: null,
+                password: null,
+                confirmPassword: "Password mismatch",
+            }));
+        }
+
+        mutateAsync(data)
     }
 
     return (
@@ -67,6 +117,7 @@ export default function Page() {
                                 type="email"
                                 name="email"
                                 leading={<EnvelopIcon />}
+                                error={formError.email}
                                 placeholder="e.g. alex@email.com"
                             />
                         </fieldset>
@@ -77,6 +128,7 @@ export default function Page() {
                                 name="password"
                                 id="password"
                                 leading={<PasswordIcon />}
+                                error={formError.password}
                                 placeholder="At least 8 characters"
                             />
                         </fieldset>
@@ -88,12 +140,13 @@ export default function Page() {
                                 id="confirmPassword"
                                 leading={<PasswordIcon />}
                                 placeholder="At least 8 characters"
+                                error={formError.confirmPassword}
                             />
                         </fieldset>
                         <p className="text-[12px] text-gray-alt">Password must contain at least 8 characters</p>
                         <Button
                             formAction={signup}
-                            type="submit"
+                            isLoading={isPending}
                         >
                             Create new account
                         </Button>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "../styles/globals.css";
 import ReactQueryProvider from "@/lib/utils/react-query";
+import { Toaster } from "react-hot-toast";
 
 const instrumentSans = Instrument_Sans({
   weight: ["400", "500", "600", "700"],
@@ -23,15 +24,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={instrumentSans.className}>
         <ReactQueryProvider>
-          <Auth>
-            {children}
-          </Auth>
+          {children}
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            toastOptions={{
+              duration: 2500,
+            }}
+          />
         </ReactQueryProvider>
       </body>
     </html>
   );
 }
-
 
 function Auth({
   children,

@@ -2,41 +2,66 @@
 import { EnvelopIcon, PasswordIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { createClient } from "@/lib/utils/supabase/client";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useState } from "react";
+import { login } from "../action";
+import { error } from "@/components/common/toast";
+import validator from 'validator';
+import { useMutation } from "@tanstack/react-query";
+
+export interface LoginFormDataProps {
+    email: string | null;
+    password: string | null;
+}
 
 export default function Page() {
 
-    const [formError, setFormError] = useState({
+    const [formError, setFormError] = useState<LoginFormDataProps>({
         email: null,
-        password: null
+        password: null,
     })
 
-    async function login(formData: FormData) {
-        const supabase = createClient()
+    const { mutateAsync, isPending } = useMutation({
+        mutationFn: (payload: LoginFormDataProps) => login(payload),
+        onSuccess: (response) => {
+            if(response?.error){
+                error(response.error)
+            }
+        },
+    });
 
-        // type-casting here for convenience
-        // in practice, you should validate your inputs
+    async function submit(formData: FormData) {
+
         const data = {
             email: formData.get('email') as string,
             password: formData.get('password') as string,
         }
 
-        const response = await supabase.auth.signInWithPassword(data)
-
-        console.log(response)
-
-        if (response.error) {
-            redirect('/error')
+        if (!data.email.trim()) {
+            return setFormError({
+                password: null,
+                email: "Can't be empty"
+            })
         }
 
-        revalidatePath('/', 'layout')
-        redirect('/')
+        if (!validator.isEmail(data.email)) {
+            return setFormError({
+                password: null,
+                email: "Enter a valid email"
+            })
+        }
+
+        if (!data.password.trim()) {
+            return setFormError({
+                email: null,
+                password: "Can't be empty",
+            });
+        }
+
+        mutateAsync(data)
     }
+
     return (
         <main className="min-h-screen bg-whitesmoke grid place-items-center py-10">
             <div className="w-full max-w-[476px]">
@@ -62,6 +87,7 @@ export default function Page() {
                                 name="email"
                                 type="email"
                                 placeholder="e.g. alex@email.com"
+                                error={formError.email}
                             />
                         </fieldset>
                         <fieldset>
@@ -71,9 +97,15 @@ export default function Page() {
                                 type="password"
                                 name="password"
                                 placeholder="Enter your password"
+                                error={formError.password}
                             />
                         </fieldset>
-                        <Button formAction={login}>Login</Button>
+                        <Button
+                            formAction={submit}
+                            isLoading={isPending}
+                        >
+                            Login
+                        </Button>
                         <div className="text-center">Don't have an account? <br className="md:hidden" /><span className="text-primary hover:underline"><Link href="/create-account">Create account</Link></span></div>
                     </form>
                 </div>
