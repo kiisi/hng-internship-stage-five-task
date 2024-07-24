@@ -13,13 +13,13 @@ export default function Navbar() {
 
     return (
         <nav className="flex items-center justify-between p-[16px] bg-white rounded-[12px]">
-            <figure>
+            <figure className="shrink-0">
                 <Image
                     src="/images/devlinks-logo.svg"
                     alt="Devlinks"
                     width={182.5}
                     height={40}
-                    className="w-[142px] h-[32px] md:w-[182px] md:h-[40px]"
+                    className="w-[142px] h-[32px] md:w-[182px] md:h-[40px] shrink-0"
                 />
             </figure>
             <div>

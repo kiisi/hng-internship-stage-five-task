@@ -34,8 +34,7 @@ export async function createAccount(formData: FormDataProps) {
     const supabase = createClient()
 
     const response = await supabase.auth.signUp(payload)
-    console.log(response)
-    
+
     if (response.error) {
         return { error: response.error.message }
     }
