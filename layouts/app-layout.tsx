@@ -1,13 +1,17 @@
 import Navbar from "@/components/common/navbar";
 import { useLinkContext } from "@/contexts/links";
 import { useUserContext } from "@/contexts/user";
+import Image from "next/image";
 import { ReactNode } from "react";
 
-export default function AppLayout({ children }: { children: ReactNode}) {
+export default function AppLayout({ children }: { children: ReactNode }) {
 
-    const {} = useUserContext()
+    const { user } = useUserContext()
 
-    const {} = useLinkContext()
+    const { linkState } = useLinkContext()
+
+    console.log(user)
+    console.log(linkState)
 
     return (
         <div className="min-h-screen bg-whitesmoke p-[24px]">
@@ -21,10 +25,40 @@ export default function AppLayout({ children }: { children: ReactNode}) {
                             <img src='/images/device-inner-frame.svg' alt="Device frame" className="w-full h-full absolute z-2" />
                             <div className="px-2 pt-14 relative w-full h-full z-10 overflow-y-auto devlinks-scroll-bar">
                                 <header className="grid place-items-center mb-[56px]">
-                                    <div className="w-[96px] h-[96px] rounded-full bg-[#eeeeee] mb-[24px]">
-                                    </div>
-                                    <div className="w-[160px] h-[16px] bg-[#eeeeee] rounded-[10px] mb-[13px]"></div>
-                                    <div className="w-[72px] h-[8px] bg-[#eeeeee] rounded-[10px]"></div>
+                                    {
+                                        user?.profile_picture ? (
+                                            <div className="mb-[24px]">
+                                                <Image
+                                                    src={user.profile_picture}
+                                                    alt="Picture of the author"
+                                                    width={96}
+                                                    height={96}
+                                                    quality={100}
+                                                    objectFit="cover"
+                                                    className="rounded-full overflow-hidden border-[4px] border-primary"
+                                                    priority
+                                                    unoptimized
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="w-[96px] h-[96px] rounded-full bg-[#eeeeee] mb-[24px]">
+                                            </div>
+                                        )
+                                    }
+                                    {
+                                        user?.first_name || user?.last_name ? (
+                                            <h2 className="text-[18px] leading-[27px] font-semibold text-gray mb-[4px]">{user.first_name} {user.last_name}</h2>
+                                        ): (
+                                            <div className="w-[160px] h-[16px] bg-[#eeeeee] rounded-[10px] mb-[4px]"></div>
+                                        )
+                                    }
+                                    {
+                                        user?.email ? (
+                                            <a href={`mailto:${user?.email}`} className="text-[14px] leading-[21px] text-gray-alt">{user?.email}</a>
+                                        ) : (
+                                            <div className="w-[72px] h-[8px] bg-[#eeeeee] rounded-[10px]"></div>
+                                        )
+                                    }
                                 </header>
                                 <div className="flex flex-col gap-[20px] w-full max-w-[237px] mx-auto">
                                     <div className="w-full bg-[#eeeeee] rounded-[8px] h-[44px]"></div>
@@ -40,7 +74,7 @@ export default function AppLayout({ children }: { children: ReactNode}) {
                 <div className="bg-white rounded-[12px]">
                     {children}
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }

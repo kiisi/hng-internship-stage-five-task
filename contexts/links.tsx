@@ -100,8 +100,6 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                     .select('*')
                     .eq('user_id', user?.id ?? '')
 
-                console.log(data)
-
                 if (data) {
                     dispatch({ type: 'SET_LINKS', payload: data as Link[] });
                 }
