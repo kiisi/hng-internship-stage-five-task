@@ -27,6 +27,10 @@ export default function Page() {
         onSuccess: (response) => {
             if(response?.error){
                 error(response.error)
+                setFormError({
+                    email: null,
+                    password: "Please check again"
+                })
             }
         },
     });
