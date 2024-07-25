@@ -70,7 +70,7 @@ export default function Page() {
               + Add new link
             </Button>
           </div>
-          <div className="flex flex-col gap-[24px] h-[500px] overflow-y-auto devlinks-scroll-bar">
+          <div className="flex flex-col gap-[24px]">
             {
               links.length > 0 ? (
                 links.map((link, index) => (
