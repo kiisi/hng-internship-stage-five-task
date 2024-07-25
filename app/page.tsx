@@ -1,15 +1,15 @@
 "use client"
 import LineLoader from "@/components/common/line-loader";
-import { CodepenIcon, CodeWarsAltIcon, CodeWarsIcon, DevToAltIcon, DevToIcon, FacebookIcon, FreeCodeCampAltIcon, FreeCodeCampIcon, FrontendMentorIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, StackoverflowIcon, TwitchIcon, TwitterAltIcon, TwitterIcon, YoutubeIcon } from "@/components/common/svgs";
+import { CodepenIcon, CodeWarsIcon, DevToIcon, FacebookIcon, FreeCodeCampIcon, FrontendMentorIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, StackoverflowIcon, TwitchIcon, TwitterIcon, YoutubeIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link, useLinkContext } from "@/contexts/links";
 import { useUserContext } from "@/contexts/user";
 import AppLayout from "@/layouts/app-layout";
 import { nanoid } from "nanoid";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, ReactElement } from "react";
 
 
 interface OuterObject {
@@ -66,7 +66,7 @@ export default function Page() {
         <div className="p-[16px] md:p-[40px]">
           <header className="mb-[40px]">
             <h1 className="text-gray font-bold text-[24px] lg:text-[32px] mb-[8px]">Customize your links</h1>
-            <p className="text-gray-alt">Add/edit/remove links below and then share all your profiles with the world!</p>
+            <p className="text-gray-alt text-[12px] md:text-[14px]">Add/edit/remove links below and then share all your profiles with the world!</p>
           </header>
           <div className="mb-[24px]">
             <Button onClick={newLinkHandler} variant="secondary" className="w-full">
@@ -93,7 +93,7 @@ export default function Page() {
                           <div className="mb-[12px]">
                             <span className="inline-block text-gray text-[12px] mb-[4px]">Platform</span>
                             <Select value={link.title} onValueChange={(value) => onSelect(link.id, value)}>
-                              <SelectTrigger icon={<LinkIcon className="h-[16px] w-[16px]" />} className="w-full">
+                              <SelectTrigger icon={getIconComponent(link.title)} className="w-full">
                                 <SelectValue placeholder="Select an option" />
                               </SelectTrigger>
                               <SelectContent className="max-h-[260px] overflow-y-auto devlinks-scroll-bar-min">
@@ -172,3 +172,24 @@ export default function Page() {
   );
 }
 
+const getIconComponent = (iconName: string): ReactElement => {
+
+  const iconMap: { [key: string]: ReactElement } = {
+    github: <GithubIcon />,
+    youtube: <YoutubeIcon />,
+    linkedin: <LinkedinIcon />,
+    gitlab: <GitlabIcon />,
+    hashnode: <HashnodeIcon />,
+    codepen: <CodepenIcon />,
+    'frontend mentor': <FrontendMentorIcon />,
+    twitter: <TwitterIcon />,
+    facebook: <FacebookIcon />,
+    twitch: <TwitchIcon />,
+    'dev.to': <DevToIcon />,
+    codewars: <CodeWarsIcon />,
+    freecodecamp: <FreeCodeCampIcon />,
+    'stack overflow': <StackoverflowIcon />,
+  };
+
+  return iconMap[iconName.toLowerCase()] || <LinkIcon className="h-[16px] w-[16px]" />;
+};
