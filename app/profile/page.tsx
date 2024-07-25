@@ -174,7 +174,7 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                 </div>
             </div>
             <div className="mt-auto">
-                <div className="border-t-[1px] px-[24px] md:px-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
+                <div className="border-t-[1px] px-[16px] md:px-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
                     <Button onClick={submit} className="w-full md:w-max">
                         Save
                     </Button>

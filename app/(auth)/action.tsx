@@ -29,6 +29,9 @@ export async function createAccount(formData: FormDataProps) {
     const payload = {
         email: formData.email!,
         password: formData.password!,
+        options: {
+            emailRedirectTo: 'https://hng-internship-stage-five-task.vercel.app' // you will have to make the project part dynamic in whichever way the framework you are using allows you to do this.
+        }
     }
 
     const supabase = createClient()
