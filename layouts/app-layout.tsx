@@ -17,11 +17,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     console.log(links)
 
     return (
-        <div className="min-h-screen bg-whitesmoke p-[24px]">
-            <div className="mb-[24px]">
+        <div className="min-h-screen bg-whitesmoke md:p-[24px]">
+            <div className="mb-[16px] md:mb-[24px]">
                 <Navbar />
             </div>
-            <div className="grid lg:grid-cols-[0.75fr_1fr] gap-[24px]">
+            <div className="grid lg:grid-cols-[0.75fr_1fr] gap-[24px] px-[16px] md:px-0">
                 <div className="hidden lg:grid bg-white p-[16px] rounded-[12px] place-items-center py-[101px]">
                     <div className="relative w-[308px] h-[632px] border-[1px] border-gray-alt rounded-[55px] p-[11px]">
                         <div className="relative w-full h-full">

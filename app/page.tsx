@@ -1,6 +1,5 @@
 "use client"
-import Navbar from "@/components/common/navbar";
-import { CodepenIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, YoutubeIcon } from "@/components/common/svgs";
+import { CodepenIcon, FrontendMentorIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, YoutubeIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -61,9 +60,9 @@ export default function Page() {
   return (
     <AppLayout>
       <div className="flex flex-col h-full">
-        <div className="p-[40px]">
+        <div className="p-[24px] md:p-[40px]">
           <header className="mb-[40px]">
-            <h1 className="text-gray font-bold text-[32px] mb-[8px]">Customize your links</h1>
+            <h1 className="text-gray font-bold text-[24px] lg:text-[32px] mb-[8px]">Customize your links</h1>
             <p className="text-gray-alt">Add/edit/remove links below and then share all your profiles with the world!</p>
           </header>
           <div className="mb-[24px]">
@@ -90,7 +89,7 @@ export default function Page() {
                           <SelectTrigger icon={<LinkIcon className="h-[16px] w-[16px]" />} className="w-full">
                             <SelectValue placeholder="Select an option" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="max-h-54 overflow-y-auto devlinks-scroll-bar-min">
                             <SelectItem icon={<GithubIcon />} value="github">Github</SelectItem>
                             <SelectSeparator />
                             <SelectItem icon={<YoutubeIcon />} value="youtube">Youtube</SelectItem>
@@ -102,6 +101,8 @@ export default function Page() {
                             <SelectItem icon={<HashnodeIcon />} value="hashnode">Hashnode</SelectItem>
                             <SelectSeparator />
                             <SelectItem icon={<CodepenIcon />} value="codepen">Codepen</SelectItem>
+                            <SelectSeparator />
+                            <SelectItem icon={<FrontendMentorIcon />} value="frontend mentor">Frontend Mentor</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -137,8 +138,8 @@ export default function Page() {
           </div>
         </div>
         <div className="mt-auto">
-          <div className="border-t-[1px] pr-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
-            <Button onClick={submit}>
+          <div className="border-t-[1px] px-[24px] md:px-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
+            <Button onClick={submit} className="w-full md:w-max">
               Save
             </Button>
           </div>

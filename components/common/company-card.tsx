@@ -1,5 +1,5 @@
 import { LinkProps } from "@/lib/utils";
-import { ArrowRightIcon, CodepenAltIcon, CodeWarsAltIcon, DevToAltIcon, FreeCodeCampAltIcon, FrontendMentorIcon, GithubAltIcon, GitlabAltIcon, HashnodeAltIcon, LinkedinAltIcon, StackoverflowAltIcon, TwitchAltIcon, TwitterAltIcon, YoutubeAltIcon } from "./svgs";
+import { ArrowRightIcon, CodepenAltIcon, CodeWarsAltIcon, DevToAltIcon, FreeCodeCampAltIcon, FrontendMentorAltIcon, GithubAltIcon, GitlabAltIcon, HashnodeAltIcon, LinkedinAltIcon, StackoverflowAltIcon, TwitchAltIcon, TwitterAltIcon, YoutubeAltIcon } from "./svgs";
 import Link from "next/link";
 
 export default function CompanyCard(props: LinkProps) {
@@ -31,9 +31,9 @@ export default function CompanyCard(props: LinkProps) {
         }
         case "frontend mentor": {
             return (
-                <Link href={url} target="_blank" className="w-full bg-white rounded-[8px] p-[16px] flex items-center justify-between">
+                <Link href={url} target="_blank" className="w-full bg-white rounded-[8px] p-[16px] flex items-center justify-between border-[1px] border-[#D9D9D9]">
                     <div className="flex items-center gap-[8px]">
-                        <FrontendMentorIcon />
+                        <FrontendMentorAltIcon />
                         <span className="text-[12px] text-gray capitalize">{title}</span>
                     </div>
                     <ArrowRightIcon className="fill-gray" />
