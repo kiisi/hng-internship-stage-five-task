@@ -56,7 +56,21 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           .select('*')
           .eq('user_id', user?.id ?? '')
           .single();
-          console.log(error)
+        console.log(error)
+
+        if (error) {
+          if (error.code === 'PGRST116') {
+            // Handle the case where no rows are returned
+            console.log('No profile found for this user.');
+          } else {
+            // Handle other types of errors
+            console.error('Error fetching user profile:', error.message);
+          }
+          dispatch({ type: 'SET_USER', payload: {} as User });
+        } else {
+          // Process the retrieved data
+          console.log('User profile:', data);
+        }
 
         if (data) {
           const _data: User = {
@@ -98,7 +112,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       .select('*')
       .eq('user_id', id)
       .single();
-      console.log(existingUser)
+    console.log(existingUser)
 
     if (existingUser) {
       // Update existing user
