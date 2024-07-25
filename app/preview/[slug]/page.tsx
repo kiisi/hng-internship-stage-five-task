@@ -1,6 +1,6 @@
 "use client"
 import CompanyCard from "@/components/common/company-card";
-import { showCustomBottomToast } from "@/components/common/toast";
+import { clipboardToast } from "@/components/common/toast";
 import { Button } from "@/components/ui/button";
 import { UserLink } from "@/contexts/links";
 import { User, useUserContext } from "@/contexts/user";
@@ -72,7 +72,7 @@ export default function Page() {
         
         navigator.clipboard.writeText(url).then(
             () => {
-                showCustomBottomToast("The link has been copied to your clipboard!")
+                clipboardToast("The link has been copied to your clipboard!")
             },
             (err) => {
                 // Error feedback

@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
-import { CloseAltIcon, LinkAltIcon } from "./svgs";
+import { CloseAltIcon, FloppyDiskIcon, LinkAltIcon } from "./svgs";
 
 export const success = (message = 'Action successful') => toast.custom((t) => (
     <div
@@ -123,9 +123,22 @@ export const warning = (message = 'Attention Needed Immediately') => toast.custo
 ))
 
 
-export const showCustomBottomToast = (message: string) => {
+export const clipboardToast = (message: string) => {
     toast(<div className="flex gap-[8px]">
             <LinkAltIcon />
+            {message}
+        </div>,
+        {
+            position: 'bottom-center',
+            duration: 45500, // Adjust the duration as needed
+            style: {maxWidth: "500px", background: "#333333", color: "white", fontWeight: "500" },
+            className: 'bg-gray! text-white px-[24px] py-[16px] text-[14px] rounded-lg shadow-lg'
+        });
+};
+
+export const saveToast = (message: string) => {
+    toast(<div className="flex gap-[8px]">
+            <FloppyDiskIcon />
             {message}
         </div>,
         {

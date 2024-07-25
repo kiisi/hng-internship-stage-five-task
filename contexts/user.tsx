@@ -1,5 +1,5 @@
 "use client"
-import { success } from '@/components/common/toast';
+import { saveToast, success } from '@/components/common/toast';
 import { createClient } from '@/lib/utils/supabase/client';
 import React, { createContext, useReducer, useEffect, ReactNode, useContext } from 'react';
 
@@ -145,7 +145,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (insertError) {
         console.error('Error inserting user:', insertError.message);
       } else {
-        success('Your changes have been successfully saved!')
+        saveToast('Your changes have been successfully saved!')
       }
     }
   };
