@@ -35,7 +35,7 @@ export default function Page() {
                 error(response.error)
             } 
             else {
-                success("Account created. Please verify account via the email we sent you")
+                success("Account created successfully")
             }
         },
     });
