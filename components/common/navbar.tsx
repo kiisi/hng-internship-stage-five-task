@@ -6,10 +6,15 @@ import { usePathname } from "next/navigation"
 import { cloneElement, ReactElement } from "react"
 import { Button } from "../ui/button"
 import { EyeIcon, LinkIcon, ProfileIcon } from "./svgs"
+import { useUserContext } from "@/contexts/user"
 
 export default function Navbar() {
 
     const pathname = usePathname()
+
+    const { user } = useUserContext()
+
+    const userId = user?.id
 
     return (
         <nav className="flex items-center justify-between p-[16px] bg-white rounded-[12px]">
@@ -52,10 +57,12 @@ export default function Navbar() {
                 </div>
             </div>
             <div>
-                <Button variant="secondary" className="px-[16px] md:px-[27px]">
-                    <div className="hidden md:block">Preview</div>
-                    <EyeIcon className="md:hidden" />
-                </Button>
+                <Link href={`/preview/${userId}`}>
+                    <Button variant="secondary" className="px-[16px] md:px-[27px]">
+                        <div className="hidden md:block">Preview</div>
+                        <EyeIcon className="md:hidden" />
+                    </Button>
+                </Link>
             </div>
         </nav>
     )
