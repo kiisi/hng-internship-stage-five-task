@@ -60,7 +60,7 @@ export default function Page() {
   return (
     <AppLayout>
       <div className="flex flex-col h-full">
-        <div className="p-[24px] md:p-[40px]">
+        <div className="p-[16px] md:p-[40px]">
           <header className="mb-[40px]">
             <h1 className="text-gray font-bold text-[24px] lg:text-[32px] mb-[8px]">Customize your links</h1>
             <p className="text-gray-alt">Add/edit/remove links below and then share all your profiles with the world!</p>

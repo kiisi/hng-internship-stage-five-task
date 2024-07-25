@@ -78,7 +78,7 @@ export default function Page() {
                         className="w-[142px] h-[32px] md:w-[182px] md:h-[40px]"
                     />
                 </header>
-                <div className="bg-white rounded-[12px] p-[40px]">
+                <div className="bg-white rounded-[12px] p-[32px] md:p-[40px]">
                     <div className="mb-[40px]">
                         <h1 className="font-bold text-[24px] md:text-[32px] mb-[8px]">Login</h1>
                         <p className="text-gray-alt">Add your details below to get back into the app</p>

@@ -34,7 +34,7 @@ export default function Navbar() {
                 </div>
             </figure>
             <div>
-                <div className="flex gap-[16px] items-center">
+                <div className="flex gap-[8px] md:gap-[16px] items-center">
                     <Link href="/">
                         <TabButton
                             title="Links"
@@ -77,7 +77,7 @@ const TabButton = ({ isActive, title, className, leading }: TabButtonProps) => {
     })
 
     return (
-        <button className={cn("group text-gray-alt hover:text-primary font-semibold px-[27px] h-[46px] py-[11px] rounded-[8px] flex items-center gap-[8px]", isActive && "bg-primary-light text-primary", className)}>
+        <button className={cn("group text-gray-alt hover:text-primary font-semibold px-[16px] md:px-[27px] h-[46px] py-[11px] rounded-[8px] flex items-center gap-[8px]", isActive && "bg-primary-light text-primary", className)}>
             {icon}
             <span className="hidden md:block">{title}</span>
         </button>

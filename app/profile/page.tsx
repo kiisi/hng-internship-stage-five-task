@@ -96,16 +96,16 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
 
     return (
         <>
-            <div className="p-[40px]">
+            <div className="p-[16px] md:p-[40px]">
                 <header className="mb-[40px]">
-                    <h1 className="text-gray font-bold text-[32px] mb-[8px]">Profile Details</h1>
+                    <h1 className="text-gray font-bold text-[24px] lg:text-[32px] mb-[8px]">Profile Details</h1>
                     <p className="text-gray-alt">Add your details to create a personal touch to your profile.</p>
                 </header>
 
                 <div className="flex flex-col gap-[24px]">
-                    <div className="bg-whitesmoke rounded-[12px] p-[20px] flex gap-[16px] justify-between items-center">
+                    <div className="bg-whitesmoke rounded-[12px] p-[20px] flex flex-col md:flex-row gap-[16px] md:justify-between md:items-center">
                         <p className="max-w-[200px] w-full">Profile picture</p>
-                        <div className="flex items-center gap-[24px]">
+                        <div className="flex flex-col md:flex-row md:items-center gap-[24px]">
                             <div
                                 className="rounded-[12px] overflow-hidden w-[193px] grid place-items-center shrink-0 h-[193px] rounded-[12px] bg-primary-light"
                             >
@@ -137,7 +137,7 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                         </div>
                     </div>
                     <div className="bg-whitesmoke rounded-[12px] p-[20px]">
-                        <div className="flex gap-[16px] justify-between items-center mb-[12px]">
+                        <div className="flex flex-col md:flex-row gap-[16px] md:justify-between md:items-center mb-[12px]">
                             <p className="max-w-[200px] w-full">First Name*</p>
                             <Input
                                 placeholder="e.g John"
@@ -148,7 +148,7 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                                 onChange={formDataHandler}
                             />
                         </div>
-                        <div className="flex gap-[16px] justify-between items-center mb-[12px]">
+                        <div className="flex flex-col md:flex-row gap-[16px] md:justify-between md:items-center mb-[12px]">
                             <p className="max-w-[200px] w-full">Last Name*</p>
                             <Input
                                 placeholder="e.g. Appleseed"
@@ -159,7 +159,7 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                                 onChange={formDataHandler}
                             />
                         </div>
-                        <div className="flex gap-[16px] justify-between items-center mb-[12px]">
+                        <div className="flex flex-col md:flex-row gap-[16px] md:justify-between md:items-center mb-[12px]">
                             <p className="max-w-[200px] w-full">Email*</p>
                             <Input
                                 placeholder="e.g. email@example.com"
@@ -174,8 +174,8 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                 </div>
             </div>
             <div className="mt-auto">
-                <div className="border-t-[1px] pr-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
-                    <Button onClick={submit}>
+                <div className="border-t-[1px] px-[24px] md:px-[40px] border-t-[#D9D9D9] flex justify-end py-[20px]">
+                    <Button onClick={submit} className="w-full md:w-max">
                         Save
                     </Button>
                 </div>
