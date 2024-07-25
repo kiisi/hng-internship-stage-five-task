@@ -106,3 +106,41 @@
   background-color: #1864ff;
   -webkit-border-radius: 2px;
 }
+
+/* Scroll bar min */
+
+.devlinks-scroll-bar-min::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.devlinks-scroll-bar-min::-webkit-scrollbar-button:start:decrement,
+.devlinks-scroll-bar-min::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 10px;
+}
+
+.devlinks-scroll-bar-min::-webkit-scrollbar-button:vertical:increment {
+  background-color: #fff;
+}
+
+.devlinks-scroll-bar-min::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 2px;
+}
+
+.devlinks-scroll-bar-min:hover::-webkit-scrollbar-track-piece {
+  background-color: #eee;
+}
+
+.devlinks-scroll-bar-min::-webkit-scrollbar-thumb:vertical,
+.devlinks-scroll-bar-min::-webkit-scrollbar-thumb:horizontal {
+  background-color: transparent; /* Initial transparent state */
+  height: 50px;
+  -webkit-border-radius: 2px;
+}
+
+.devlinks-scroll-bar-min:hover::-webkit-scrollbar-thumb:vertical,
+.devlinks-scroll-bar-min:hover::-webkit-scrollbar-thumb:horizontal {
+  background-color: #1864ff; /* Visible color when hovered */
+}

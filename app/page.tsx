@@ -1,6 +1,6 @@
 "use client"
 import Navbar from "@/components/common/navbar";
-import { GithubIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, YoutubeIcon } from "@/components/common/svgs";
+import { CodepenIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, YoutubeIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -96,6 +96,12 @@ export default function Page() {
                             <SelectItem icon={<YoutubeIcon />} value="youtube">Youtube</SelectItem>
                             <SelectSeparator />
                             <SelectItem icon={<LinkedinIcon />} value="linkedin">Linkedin</SelectItem>
+                            <SelectSeparator />
+                            <SelectItem icon={<GitlabIcon />} value="gitlab">Gitlab</SelectItem>
+                            <SelectSeparator />
+                            <SelectItem icon={<HashnodeIcon />} value="hashnode">Hashnode</SelectItem>
+                            <SelectSeparator />
+                            <SelectItem icon={<CodepenIcon />} value="codepen">Codepen</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

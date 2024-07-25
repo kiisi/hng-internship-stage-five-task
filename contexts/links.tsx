@@ -100,8 +100,15 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                     .select('*')
                     .eq('user_id', user?.id ?? '')
 
+                const links = data?.map(link => ({
+                    id: link.id,
+                    title: link.title,
+                    url: link.url,
+                    user_id: link.user_id
+                }))
+
                 if (data) {
-                    dispatch({ type: 'SET_LINKS', payload: data as Link[] });
+                    dispatch({ type: 'SET_LINKS', payload: links as Link[] });
                 }
             }
             catch (error) {
@@ -149,8 +156,15 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             if (_error) {
                 return error("Unable to remove link")
             }
-            
-            dispatch({ type: 'REMOVE_LINK', payload: data[0] });
+
+            if (data.length === 0) {
+                dispatch({ type: 'REMOVE_LINK', payload: link });
+            }
+            else {
+                dispatch({ type: 'REMOVE_LINK', payload: data[0] });
+            }
+
+
         }
         catch (error) {
             console.log(error)
