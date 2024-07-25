@@ -130,7 +130,7 @@ export const clipboardToast = (message: string) => {
         </div>,
         {
             position: 'bottom-center',
-            duration: 45500, // Adjust the duration as needed
+            duration: 2500, // Adjust the duration as needed
             style: {maxWidth: "500px", background: "#333333", color: "white", fontWeight: "500" },
             className: 'bg-gray! text-white px-[24px] py-[16px] text-[14px] rounded-lg shadow-lg'
         });
@@ -143,7 +143,7 @@ export const saveToast = (message: string) => {
         </div>,
         {
             position: 'bottom-center',
-            duration: 45500, // Adjust the duration as needed
+            duration: 2500, // Adjust the duration as needed
             style: {maxWidth: "500px", background: "#333333", color: "white", fontWeight: "500" },
             className: 'bg-gray! text-white px-[24px] py-[16px] text-[14px] rounded-lg shadow-lg'
         });
