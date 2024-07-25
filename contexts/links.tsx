@@ -22,6 +22,8 @@ type Action =
     | { type: 'SET_LINK'; payload: Link }
     | { type: 'SET_LINKS'; payload: Link[] }
     | { type: 'REMOVE_LINK'; payload: Link }
+    | { type: 'START_LOADING'; payload: undefined | null }
+    | { type: 'STOP_LOADING'; payload?: undefined | null }
 
 interface LinkState {
     links: Link[];
@@ -30,7 +32,7 @@ interface LinkState {
 // Define initial state
 const initialState: LinkState = {
     links: [],
-    loading: false,
+    loading: true,
 };
 
 // Define the reducer function
@@ -59,6 +61,20 @@ const linkReducer = (state: LinkState, action: Action): LinkState => {
             return {
                 ...state,
                 links: action.payload
+            }
+        }
+        case "START_LOADING": {
+
+            return {
+                ...state,
+                loading: true,
+            }
+        }
+        case "STOP_LOADING": {
+
+            return {
+                ...state,
+                loading: false,
             }
         }
         case 'REMOVE_LINK':
@@ -113,7 +129,9 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             }
             catch (error) {
                 console.log("Error", error);
+                
             }
+            dispatch({ type: 'STOP_LOADING', payload: null });
         };
 
         fetchLinks();
