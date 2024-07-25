@@ -75,7 +75,9 @@ export default function Page() {
           </div>
           {
             loading ? (
-              <LineLoader />
+              <div className="pb-[300px]">
+                <LineLoader />
+              </div>
             ) : (
               <div className="flex flex-col gap-[24px]">
                 {
