@@ -25,7 +25,7 @@ export default function Page() {
     const { mutateAsync, isPending } = useMutation({
         mutationFn: (payload: LoginFormDataProps) => login(payload),
         onSuccess: (response) => {
-            if(response?.error){
+            if (response?.error) {
                 error(response.error)
                 setFormError({
                     email: null,

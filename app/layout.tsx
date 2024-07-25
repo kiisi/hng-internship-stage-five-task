@@ -11,7 +11,6 @@ const instrumentSans = Instrument_Sans({
   subsets: ['latin'],
 })
 
-
 export const metadata: Metadata = {
   title: "Devlinks",
   description: "Devlinks - Made with 💗 Destiny Felix Kiisi🔥",

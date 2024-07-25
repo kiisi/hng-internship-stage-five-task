@@ -2,11 +2,8 @@
 import { EnvelopIcon, PasswordIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { createClient } from "@/lib/utils/supabase/client";
-import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 import { createAccount } from "../action";
 import { useMutation } from "@tanstack/react-query";
