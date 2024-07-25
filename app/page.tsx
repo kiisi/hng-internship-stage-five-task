@@ -1,6 +1,6 @@
 "use client"
 import LineLoader from "@/components/common/line-loader";
-import { CodepenIcon, FrontendMentorIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, YoutubeIcon } from "@/components/common/svgs";
+import { CodepenIcon, CodeWarsAltIcon, CodeWarsIcon, DevToAltIcon, DevToIcon, FacebookIcon, FreeCodeCampAltIcon, FreeCodeCampIcon, FrontendMentorIcon, GithubIcon, GitlabIcon, HashnodeIcon, LinkedinIcon, LinkIcon, MenuIcon, ProfileIcon, StackoverflowIcon, TwitchIcon, TwitterAltIcon, TwitterIcon, YoutubeIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -96,7 +96,7 @@ export default function Page() {
                               <SelectTrigger icon={<LinkIcon className="h-[16px] w-[16px]" />} className="w-full">
                                 <SelectValue placeholder="Select an option" />
                               </SelectTrigger>
-                              <SelectContent className="max-h-54 overflow-y-auto devlinks-scroll-bar-min">
+                              <SelectContent className="max-h-[260px] overflow-y-auto devlinks-scroll-bar-min">
                                 <SelectItem icon={<GithubIcon />} value="github">Github</SelectItem>
                                 <SelectSeparator />
                                 <SelectItem icon={<YoutubeIcon />} value="youtube">Youtube</SelectItem>
@@ -110,6 +110,20 @@ export default function Page() {
                                 <SelectItem icon={<CodepenIcon />} value="codepen">Codepen</SelectItem>
                                 <SelectSeparator />
                                 <SelectItem icon={<FrontendMentorIcon />} value="frontend mentor">Frontend Mentor</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<TwitterIcon />} value="twitter">Twitter</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<FacebookIcon />} value="facebook">Facebook</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<TwitchIcon />} value="twitch">Twitch</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<DevToIcon />} value="dev.to">Dev.to</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<CodeWarsIcon />} value="codewars">Codewars</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<FreeCodeCampIcon />} value="freecodecamp">FreeCodeCamp</SelectItem>
+                                <SelectSeparator />
+                                <SelectItem icon={<StackoverflowIcon />} value="stack overflow">Stack Overflow</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
