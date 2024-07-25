@@ -95,7 +95,7 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             try {
                 const { data: { user } } = await supabase.auth.getUser();
 
-                const { data } = await supabase
+                const { data, error } = await supabase
                     .from('url')
                     .select('*')
                     .eq('user_id', user?.id ?? '')
@@ -126,7 +126,6 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             const { data, error } = await supabase
                 .from("url")
                 .upsert(links, { onConflict: 'id' });
-
             if (error) {
                 console.error('Error upserting data:', error);
                 return;
@@ -138,7 +137,6 @@ const LinkProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
 
     }
-
 
     const setLink = (link: Link) => {
         dispatch({ type: 'SET_LINK', payload: link });

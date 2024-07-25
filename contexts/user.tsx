@@ -57,6 +57,8 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           .eq('user_id', user?.id ?? '')
           .single();
         console.log(error)
+        console.log(user)
+        console.log(data)
 
         if (error) {
           if (error.code === 'PGRST116') {
@@ -66,7 +68,7 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
             // Handle other types of errors
             console.error('Error fetching user profile:', error.message);
           }
-          dispatch({ type: 'SET_USER', payload: {} as User });
+          dispatch({ type: 'SET_USER', payload: {id: user?.id, email: user?.email} as User });
         } else {
           // Process the retrieved data
           console.log('User profile:', data);
