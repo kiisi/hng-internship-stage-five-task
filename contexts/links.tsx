@@ -10,6 +10,8 @@ export interface Link {
     user_id: string;
 }
 
+export type UserLink = Link;
+
 export interface LinkContextType {
     linkState: LinkState;
     setLink: (link: Link) => void;

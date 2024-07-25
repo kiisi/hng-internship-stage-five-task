@@ -9,6 +9,7 @@ export interface User {
   profile_picture?: string;
   first_name?: string;
   last_name?: string;
+  user_id?: string;
 }
 
 export interface UserContextType {
@@ -56,9 +57,6 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           .select('*')
           .eq('user_id', user?.id ?? '')
           .single();
-        console.log(error)
-        console.log(user)
-        console.log(data)
 
         if (error) {
           if (error.code === 'PGRST116') {
@@ -104,9 +102,9 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       console.error('No user data available');
       return;
     }
-    console.log(user)
+    
     const { id } = user;
-    console.log(id)
+   
 
     // Check if the user exists by ID or email
     const { data: existingUser, error: fetchError } = await supabase
@@ -114,7 +112,6 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       .select('*')
       .eq('user_id', id)
       .single();
-    console.log(existingUser)
 
     if (existingUser) {
       // Update existing user
@@ -132,7 +129,6 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         console.error('Error updating user:', updateError.message);
       } else {
         success('Your changes have been successfully saved!')
-        console.log('User updated successfully');
       }
     } else {
       // Create new user
@@ -150,11 +146,9 @@ const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         console.error('Error inserting user:', insertError.message);
       } else {
         success('Your changes have been successfully saved!')
-        console.log('User created successfully');
       }
     }
   };
-
 
   return (
     <UserContext.Provider value={{ user, setUser, save }}>
