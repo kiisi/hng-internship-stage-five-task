@@ -1,5 +1,6 @@
 "use client"
 import CompanyCard from "@/components/common/company-card";
+import { showCustomBottomToast } from "@/components/common/toast";
 import { Button } from "@/components/ui/button";
 import { UserLink } from "@/contexts/links";
 import { User, useUserContext } from "@/contexts/user";
@@ -66,8 +67,19 @@ export default function Page() {
 
     const UserLinksPreviewData = dataLinks
 
-    console.log("UserProfilePreviewData", UserProfilePreviewData)
-    console.log("UserLinksPreviewData", UserLinksPreviewData)
+    const copyToClipboard = () => {
+        const url = `https://hng-internship-stage-five-task.vercel.app/preview/${userId ?? slug}`
+        
+        navigator.clipboard.writeText(url).then(
+            () => {
+                showCustomBottomToast("The link has been copied to your clipboard!")
+            },
+            (err) => {
+                // Error feedback
+                console.error('Failed to copy text: ', err);
+            }
+        );
+    }
 
     return (
         <div>
@@ -87,11 +99,9 @@ export default function Page() {
                         }
                     </div>
                     <div>
-                        <Link href={`/preview/${userId}`}>
-                            <Button className="px-[16px] md:px-[27px]">
-                                Share Link
-                            </Button>
-                        </Link>
+                        <Button onClick={copyToClipboard} className="px-[16px] md:px-[27px]">
+                            Share Link
+                        </Button>
                     </div>
                 </nav>
             </div >
