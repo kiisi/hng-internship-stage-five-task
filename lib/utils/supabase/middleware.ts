@@ -38,11 +38,19 @@ export async function updateSession(request: NextRequest) {
   if (
     !user &&
     !request.nextUrl.pathname.startsWith('/login') &&
-    !request.nextUrl.pathname.startsWith('/create-account')
+    !request.nextUrl.pathname.startsWith('/create-account') &&
+    !request.nextUrl.pathname.startsWith('/preview')
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
+
+    if (url.pathname.startsWith('/preview')) {
+      url.pathname = url.pathname
+    }
+    else {
+      url.pathname = '/login'
+    }
+    
     return NextResponse.redirect(url)
   }
 

@@ -99,10 +99,10 @@ export default function Page() {
                 <div className="-mt-[149px] shadow-[0px_0px_32px_0px_#0000001A] max-w-[349px] w-full mx-auto rounded-[24px] min-h-[569px] bg-white py-[48px] px-[56px]">
                     <header className="grid place-items-center mb-[42px]">
                         {
-                            user?.profile_picture ? (
+                            UserProfilePreviewData?.profile_picture ? (
                                 <div className="mb-[24px]">
                                     <Image
-                                        src={user.profile_picture}
+                                        src={UserProfilePreviewData.profile_picture}
                                         alt="Picture of the author"
                                         width={96}
                                         height={96}
@@ -119,15 +119,15 @@ export default function Page() {
                             )
                         }
                         {
-                            user?.first_name || user?.last_name ? (
-                                <h2 className="text-[18px] leading-[27px] font-semibold text-gray mb-[4px]">{user.first_name} {user.last_name}</h2>
+                            UserProfilePreviewData?.first_name || UserProfilePreviewData?.last_name ? (
+                                <h2 className="text-[18px] leading-[27px] font-semibold text-gray mb-[4px]">{UserProfilePreviewData.first_name} {UserProfilePreviewData.last_name}</h2>
                             ) : (
                                 <div className="w-[160px] h-[16px] bg-[#eeeeee] rounded-[10px] mb-[4px]"></div>
                             )
                         }
                         {
-                            user?.email ? (
-                                <a href={`mailto:${user?.email}`} className="text-[14px] leading-[21px] text-gray-alt">{user?.email}</a>
+                            UserProfilePreviewData?.email ? (
+                                <a href={`mailto:${UserProfilePreviewData?.email}`} className="text-[14px] leading-[21px] text-gray-alt">{UserProfilePreviewData?.email}</a>
                             ) : (
                                 <div className="w-[72px] h-[8px] bg-[#eeeeee] rounded-[10px]"></div>
                             )
