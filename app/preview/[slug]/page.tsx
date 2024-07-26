@@ -83,8 +83,8 @@ export default function Page() {
 
     return (
         <div>
-            <div className="p-[24px] bg-primary md:h-[357px] rounded-b-[32px]">
-                <nav className="flex items-center bg-white justify-between p-[16px] bg-white rounded-[12px]">
+            <div className="md:p-[24px] bg-primary md:h-[357px] rounded-b-[32px]">
+                <nav className="flex items-center bg-white justify-between p-[16px] bg-white md:rounded-[12px]">
                     <div>
                         {
                             slug !== userId ? (
@@ -106,7 +106,7 @@ export default function Page() {
                 </nav>
             </div >
             <div className="w-full pb-[207px]">
-                <div className="-mt-[149px] shadow-[0px_0px_32px_0px_#0000001A] max-w-[349px] w-full mx-auto rounded-[24px] min-h-[569px] bg-white py-[48px] px-[56px]">
+                <div className="md:mt-[-149px] md:shadow-[0px_0px_32px_0px_#0000001A] max-w-[349px] w-full mx-auto rounded-[24px] min-h-[569px] bg-white py-[48px] px-[24px] md:px-[56px]">
                     <header className="grid place-items-center mb-[42px]">
                         {
                             UserProfilePreviewData?.profile_picture ? (
