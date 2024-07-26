@@ -14,8 +14,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
 
     const links = linkState.links
 
-    console.log(links)
-
     return (
         <div className="min-h-screen bg-whitesmoke md:p-[24px]">
             <div className="mb-[16px] md:mb-[24px]">
@@ -38,9 +36,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                                                         width={96}
                                                         height={96}
                                                         quality={100}
-                                                        objectFit="cover"
+                                                        loading="lazy"
                                                         className="rounded-full overflow-hidden border-[4px] border-primary"
-                                                        priority
                                                         unoptimized
                                                     />
                                                 </div>

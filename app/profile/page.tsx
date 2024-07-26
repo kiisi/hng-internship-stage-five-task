@@ -70,13 +70,9 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                 });
                 const uploadResult = await uploadResponse.json();
 
-                // Construct the URL for resizing
-                const publicId = uploadResult.public_id;
-                const transformedUrl = `https://res.cloudinary.com/destinyfelixkiisi/image/upload/w_65,h_65/${publicId}`;
-
                 setFormData(prev => ({
                     ...prev,
-                    profile_picture: transformedUrl
+                    profile_picture: uploadResult.url
                 }));
             } catch (error) {
                 console.error('Error resizing image:', error);
@@ -115,8 +111,8 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                                             width={193}
                                             height={193}
                                             quality={100}
-                                            className="absolute rounded-[12px] overflow-hidden"
-                                            priority={true} 
+                                            className="absolute rounded-[12px] bg-cover overflow-hidden"
+                                            loading="lazy"
                                             unoptimized={true} 
                                         />
                                     )

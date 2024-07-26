@@ -139,6 +139,7 @@ export default function Page() {
                               placeholder="e.g. https://www.github.com/johnappleseed"
                               value={link.url}
                               onChange={(e) => formDataHandler(e, link.id)}
+                              required={true}
                             />
                           </div>
                         </div>
