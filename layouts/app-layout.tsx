@@ -37,7 +37,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                                                         height={96}
                                                         quality={100}
                                                         loading="lazy"
-                                                        className="rounded-full overflow-hidden border-[4px] border-primary"
+                                                        className="rounded-full w-[96px] h-[96px] border-[4px] border-primary overflow-hidden"
                                                         unoptimized
                                                     />
                                                 </div>

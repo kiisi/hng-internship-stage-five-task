@@ -111,7 +111,7 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                                             width={193}
                                             height={193}
                                             quality={100}
-                                            className="absolute rounded-[12px] bg-cover overflow-hidden"
+                                            className="absolute w-[193px] overflow-hidden h-[193px] rounded-[12px] bg-contain"
                                             loading="lazy"
                                             unoptimized={true} 
                                         />

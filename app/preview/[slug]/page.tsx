@@ -118,7 +118,7 @@ export default function Page() {
                                         height={96}
                                         quality={100}
                                         objectFit="cover"
-                                        className="rounded-full overflow-hidden border-[4px] border-primary"
+                                        className="rounded-full w-[96px] h-[96px] overflow-hidden border-[4px] border-primary"
                                         priority={true}
                                         unoptimized={true}
                                     />
