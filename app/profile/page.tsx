@@ -116,8 +116,8 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                                             height={193}
                                             quality={100}
                                             className="absolute rounded-[12px] overflow-hidden"
-                                            priority 
-                                            unoptimized 
+                                            priority={true} 
+                                            unoptimized={true} 
                                         />
                                     )
                                 }

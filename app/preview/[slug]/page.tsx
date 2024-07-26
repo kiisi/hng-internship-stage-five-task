@@ -119,8 +119,8 @@ export default function Page() {
                                         quality={100}
                                         objectFit="cover"
                                         className="rounded-full overflow-hidden border-[4px] border-primary"
-                                        priority
-                                        unoptimized
+                                        priority={true}
+                                        unoptimized={true}
                                     />
                                 </div>
                             ) : (
