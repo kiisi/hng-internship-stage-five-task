@@ -1,5 +1,6 @@
 "use client"
 import LineLoader from "@/components/common/line-loader";
+import { FileImageIcon } from "@/components/common/svgs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, UserContextType, useUserContext } from "@/contexts/user";
@@ -100,33 +101,39 @@ const ProfileInformation = ({ user, setUser, save }: UserContextType) => {
                     <div className="bg-whitesmoke rounded-[12px] p-[20px] flex flex-col md:flex-row gap-[16px] md:justify-between md:items-center">
                         <p className="max-w-[200px] w-full">Profile picture</p>
                         <div className="flex flex-col md:flex-row md:items-center gap-[24px]">
-                            <div
-                                className="rounded-[12px] overflow-hidden w-[193px] grid place-items-center shrink-0 h-[193px] rounded-[12px] bg-primary-light"
+                            <button
+                                className="relative rounded-[12px] overflow-hidden w-[193px] grid place-items-center shrink-0 h-[193px] rounded-[12px] bg-primary-light"
                             >
+                                {
+                                    formData?.profile_picture && (
+                                        <div className="block opacity-[.50] bg-[black] z-[2] absolute w-full h-full rounded-[12px]"></div>
+                                    )
+                                }
                                 {
                                     formData.profile_picture && (
                                         <Image
                                             src={formData.profile_picture}
                                             alt="Picture of the author"
-                                            width={193}
-                                            height={193}
+                                            fill={true}
                                             quality={100}
-                                            className="absolute w-[193px] overflow-hidden h-[193px] rounded-[12px] bg-contain"
+                                            className="absolute object-cover w-[193px] overflow-hidden h-[193px] rounded-[12px]"
                                             loading="lazy"
-                                            unoptimized={true} 
+                                            unoptimized={true}
                                         />
                                     )
                                 }
-                                <div className="relative grid place-items-center font-semibold text-center text-primary">
+                                <div className="relative grid place-items-center font-semibold text-center text-primary z-10">
                                     <input
                                         type="file"
                                         className="w-full z-[4] h-full opacity-0 absolute top-0 left-0"
                                         onChange={profilePicsHandler}
                                     />
-                                    <div className="mb-[8px]"><ImageIcon /></div>
-                                    <p className="text-primary">+ Upload Image</p>
+                                    <div className="mb-[8px]">
+                                        <FileImageIcon className={formData.profile_picture && "fill-white"} />
+                                    </div>
+                                    <p className={formData.profile_picture ? "text-white": "text-primary"}>+ Upload Image</p>
                                 </div>
-                            </div>
+                            </button>
                             <p className="text-[12px] text-[#888888]">Image must be below 1024x1024px. Use PNG or JPG format.</p>
                         </div>
                     </div>

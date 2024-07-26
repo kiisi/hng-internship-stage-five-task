@@ -29,15 +29,14 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                                     <header className="grid place-items-center mb-[42px]">
                                         {
                                             user?.profile_picture ? (
-                                                <div className="mb-[24px]">
+                                                <div className="mb-[24px] relative w-[96px] h-[96px]">
                                                     <Image
                                                         src={user.profile_picture}
                                                         alt="Picture of the author"
-                                                        width={96}
-                                                        height={96}
                                                         quality={100}
+                                                        fill={true}
                                                         loading="lazy"
-                                                        className="rounded-full w-[96px] h-[96px] border-[4px] border-primary overflow-hidden"
+                                                        className="rounded-full object-cover border-[4px] border-primary overflow-hidden"
                                                         unoptimized
                                                     />
                                                 </div>

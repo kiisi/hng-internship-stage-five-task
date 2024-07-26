@@ -69,7 +69,7 @@ export default function Page() {
 
     const copyToClipboard = () => {
         const url = `https://hng-internship-stage-five-task.vercel.app/preview/${userId ?? slug}`
-        
+
         navigator.clipboard.writeText(url).then(
             () => {
                 clipboardToast("The link has been copied to your clipboard!")
@@ -111,17 +111,17 @@ export default function Page() {
                         {
                             UserProfilePreviewData?.profile_picture ? (
                                 <div className="mb-[24px]">
-                                    <Image
-                                        src={UserProfilePreviewData.profile_picture}
-                                        alt="Picture of the author"
-                                        width={96}
-                                        height={96}
-                                        quality={100}
-                                        objectFit="cover"
-                                        className="rounded-full w-[96px] h-[96px] overflow-hidden border-[4px] border-primary"
-                                        priority={true}
-                                        unoptimized={true}
-                                    />
+                                    <div className="mb-[24px] relative w-[96px] h-[96px]">
+                                        <Image
+                                            src={UserProfilePreviewData.profile_picture}
+                                            alt="Picture of the author"
+                                            quality={100}
+                                            fill={true}
+                                            loading="lazy"
+                                            className="rounded-full object-cover border-[4px] border-primary overflow-hidden"
+                                            unoptimized
+                                        />
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="w-[96px] h-[96px] rounded-full bg-[#eeeeee] mb-[24px]">
