@@ -65,6 +65,8 @@ export default function Page() {
         enabled: !!UserProfilePreviewData?.user_id,
     })
 
+    const allLoadingCompleted = !isLoading && !isLoadingLinks
+
     const UserLinksPreviewData = dataLinks
 
     const copyToClipboard = () => {
@@ -109,7 +111,7 @@ export default function Page() {
                 <div className="md:mt-[-149px] md:shadow-[0px_0px_32px_0px_#0000001A] max-w-[349px] w-full mx-auto rounded-[24px] min-h-[569px] bg-white py-[48px] px-[24px] md:px-[56px]">
                     <header className="grid place-items-center mb-[42px]">
                         {
-                            UserProfilePreviewData?.profile_picture ? (
+                            allLoadingCompleted && UserProfilePreviewData?.profile_picture ? (
                                 <div className="mb-[24px]">
                                     <div className="mb-[24px] relative w-[96px] h-[96px]">
                                         <Image
@@ -129,14 +131,14 @@ export default function Page() {
                             )
                         }
                         {
-                            UserProfilePreviewData?.first_name || UserProfilePreviewData?.last_name ? (
+                            allLoadingCompleted && (UserProfilePreviewData?.first_name || UserProfilePreviewData?.last_name) ? (
                                 <h2 className="text-[18px] leading-[27px] font-semibold text-gray mb-[4px]">{UserProfilePreviewData.first_name} {UserProfilePreviewData.last_name}</h2>
                             ) : (
                                 <div className="w-[160px] h-[16px] bg-[#eeeeee] rounded-[10px] mb-[4px]"></div>
                             )
                         }
                         {
-                            UserProfilePreviewData?.email ? (
+                            allLoadingCompleted && UserProfilePreviewData?.email ? (
                                 <a href={`mailto:${UserProfilePreviewData?.email}`} className="text-[14px] leading-[21px] text-gray-alt">{UserProfilePreviewData?.email}</a>
                             ) : (
                                 <div className="w-[72px] h-[8px] bg-[#eeeeee] rounded-[10px]"></div>
@@ -145,7 +147,7 @@ export default function Page() {
                     </header>
                     <div className="flex flex-col gap-[16px] w-full max-w-[237px] mx-auto">
                         {
-                            UserLinksPreviewData?.map(link => (
+                            allLoadingCompleted && UserLinksPreviewData?.map(link => (
                                 <CompanyCard
                                     id={link.id}
                                     key={link.id}
